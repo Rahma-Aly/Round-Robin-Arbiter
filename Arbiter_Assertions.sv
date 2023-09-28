@@ -36,8 +36,8 @@ module Arbiter_Assertions (
             
     property No_hogging;
         @(posedge clk) disable iff(~rst_n)
-        $rose(Grant[0]) |=> $fell(Grant[0]) or $rose(Grant[1]) |=> $fell(Grant[1]) or 
-        $rose(Grant[2]) |=> $fell(Grant[2]) or $rose(Grant[3]) |=> $fell(Grant[3]);
+        (Grant[0] ##1 ~Grant[0]) or (Grant[1] ##1 ~Grant[1]) or 
+        (Grant[2] ##1 ~Grant[2]) or (Grant[3] ##1 ~Grant[3]);
     endproperty
     
     CHECK_NO_HOGGING: assert property (No_hogging) else $error("Grant is given twice in a row for a certain requestor");
