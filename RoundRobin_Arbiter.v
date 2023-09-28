@@ -48,10 +48,11 @@ module RoundRobin_Arbiter #(parameter INPUT_WIDTH = 4)(
         .Out(Out3)
     );
     
-    assign Grant[0] = Out0[0] | Out1[0] | Out2[0] | Out3[0];
-    assign Grant[1] = Out0[1] | Out1[1] | Out2[1] | Out3[1];
-    assign Grant[2] = Out0[2] | Out1[2] | Out2[2] | Out3[2];
-    assign Grant[3] = Out0[3] | Out1[3] | Out2[3] | Out3[3];
+    assign Grant[0] = Out0[0] | Out1[3] | Out2[2] | Out3[1];
+    assign Grant[1] = Out0[1] | Out1[0] | Out2[3] | Out3[2];
+    assign Grant[2] = Out0[2] | Out1[1] | Out2[0] | Out3[3];
+    assign Grant[3] = Out0[3] | Out1[2] | Out2[1] | Out3[0];
+      
     
     
 endmodule : RoundRobin_Arbiter
