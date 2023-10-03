@@ -44,7 +44,7 @@ module RoundRobin_Arbiter #(parameter INPUT_WIDTH = 4)(
         .clk(clk),
         .rst_n(rst_n),
         .En(Count_out[0]),
-        .In({Req[0],Req[1],Req[2],Req[3]}),
+	    .In({Req[0],Req[3],Req[2],Req[1]}),
         .Out(Out3)
     );
     
