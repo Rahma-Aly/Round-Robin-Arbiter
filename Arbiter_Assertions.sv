@@ -21,8 +21,7 @@ module Arbiter_Assertions (
             
     
     property one_grant_at_a_time;
-        disable iff (~rst_n)
-        Grant == 'b0 or  Grant == 'b1 or  Grant == 'b10 or  Grant == 'b100 or Grant == 'b1000 ;
+        $onehot(Grant);
     endproperty
     
     CHECK_ONE_GRANT : assert property (@(posedge clk) one_grant_at_a_time) else $error("more than 1 request was given a grant");
